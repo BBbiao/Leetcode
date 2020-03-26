@@ -15,11 +15,11 @@
 	
 # 数据结构相关
 
-- [链表](LeetCode%20题解%20-%20链表.md)
-- [树](LeetCode%20题解%20-%20树.md)
-- [栈和队列](LeetCode%20题解%20-%20栈和队列.md)
-- [哈希表](LeetCode%20题解%20-%20哈希表.md)
-- [字符串](LeetCode%20题解%20-%20字符串.md)
-- [数组与矩阵](LeetCode%20题解%20-%20数组与矩阵.md)
-- [图](LeetCode%20题解%20-%20图.md)
-- [位运算](LeetCode%20题解%20-%20位运算.md)
+- [链表](LeetCode%20题解/LeetCode%20题解%20-%20链表.md)
+- [树](LeetCode%20题解/LeetCode%20题解%20-%20树.md)
+- [栈和队列](LeetCode%20题解/LeetCode%20题解%20-%20栈和队列.md)
+- [哈希表](LeetCode%20题解/LeetCode%20题解%20-%20哈希表.md)
+- [字符串](LeetCode%20题解/LeetCode%20题解%20-%20字符串.md)
+- [数组与矩阵](LeetCode%20题解/LeetCode%20题解%20-%20数组与矩阵.md)
+- [图](LeetCode%20题解/LeetCode%20题解%20-%20图.md)
+- [位运算](LeetCode%20题解/LeetCode%20题解%20-%20位运算.md)
