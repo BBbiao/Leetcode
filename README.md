@@ -4,14 +4,14 @@
 
 # 算法思想
 
-- [双指针](LeetCode%20题解%20-%20双指针.md)
-- [排序](LeetCode%20题解%20-%20排序.md)
-- [贪心思想](LeetCode%20题解%20-%20贪心思想.md)
-- [二分查找](LeetCode%20题解%20-%20二分查找.md)
-- [分治](LeetCode%20题解%20-%20分治.md)
-- [搜索](LeetCode%20题解%20-%20搜索.md)
-- [动态规划](LeetCode%20题解%20-%20动态规划.md)
-- [数学](LeetCode%20题解%20-%20数学.md)
+- [双指针](LeetCode%20题解/LeetCode%20题解%20-%20双指针.md)
+- [排序](LeetCode%20题解/LeetCode%20题解%20-%20排序.md)
+- [贪心思想](LeetCode%20题解/LeetCode%20题解%20-%20贪心思想.md)
+- [二分查找](LeetCode%20题解/LeetCode%20题解%20-%20二分查找.md)
+- [分治](LeetCode%20题解/LeetCode%20题解%20-%20分治.md)
+- [搜索](LeetCode%20题解/LeetCode%20题解%20-%20搜索.md)
+- [动态规划](LeetCode%20题解/LeetCode%20题解%20-%20动态规划.md)
+- [数学](LeetCode%20题解/LeetCode%20题解%20-%20数学.md)
 	
 # 数据结构相关
 
