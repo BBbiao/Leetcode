@@ -7,7 +7,9 @@
 　　TreeNode *left;
 　　TreeNode *right;
 　　TreeNode(int x) : val(x), left(NULL), right(NULL) {}
-　};```
+　};
+```
+
 
 <!-- GFM-TOC -->
 [104.二叉树的最大深度](#104-二叉树的最大深度)  
@@ -60,7 +62,8 @@ public:
             }
         }
     }
-};```
+};
+```
 <div id="94-way2"></div>
 
 ```cpp
@@ -88,7 +91,9 @@ public:
 		}
 		return res;
     }
-};```
+};
+```
+
 
 **104-二叉树的最大深度**(easy)  
 题目：  
@@ -129,7 +134,8 @@ public:
         max_Depth = left_Depth>right_Depth?left_Depth+1:right_Depth+1;
         return max_Depth;
     }
-};```
+};
+```
 <div id="104-way2"></div>
 
 ```cpp
@@ -153,7 +159,9 @@ public:
 		}
         return max_Depth;
     }
-};```
+};
+```
+
 
 **110-平衡二叉树**(easy)  
 　　题目：  
@@ -195,7 +203,8 @@ public:
 			&& isBalanced(root->left) && isBalanced(root->right);
 
     }
-};```
+};
+```
 <div id="110-way2"></div>
 
 ```cpp
@@ -229,7 +238,9 @@ public:
     int height;
     return isBalancedTreeHelper(root, height);
   }
-};```
+};
+```
+
 
 **144-二叉树的前序遍历**(medium)  
 
@@ -262,7 +273,8 @@ public:
             }
         }
     }
-};```
+};
+```
 
 <div id="-way2"></div>
 
@@ -292,7 +304,9 @@ public:
 		}
 		return res;
     }
-};```
+};
+```
+
 
 **145-二叉树的后序遍历**(hard)  
 　　给定一个二叉树，返回它的 后序 遍历。  
@@ -326,7 +340,8 @@ public:
             res.push_back(root->val);
         }
     }
-};```
+};
+```
 <div id="145-way2"></div>
 
 ```cpp
@@ -359,7 +374,9 @@ public:
 		}
 		return res;
     }
-};```
+};
+```
+
 
 **543-二叉树的直径**(easy)  
 　　题目：  
@@ -425,7 +442,8 @@ public:
         return max_length;
 
     }
-};```
+};
+```
 <div id="-way2"></div>
 
 ```cpp
@@ -448,7 +466,9 @@ public:
         depth(root);
         return res;
     }
-};```
+};
+```
+
 
 **208-实现Trie(前缀树)**(medium)  
 Trie(前缀树)介绍：  
