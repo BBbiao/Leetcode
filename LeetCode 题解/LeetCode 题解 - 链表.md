@@ -4,13 +4,14 @@
 链表有时候在头起位置创建一个哑结点更为有效。例：删除倒数第N个节点。  
 
 ```cpp 
-//Definition for singly-linked list.
-struct ListNode {
-　　int val;
-　　ListNode *next;
-　　ListNode(int x) : val(x), next(NULL) {}
-};
+        //Definition for singly-linked list.
+        struct ListNode {
+        　　int val;
+        　　ListNode *next;
+        　　ListNode(int x) : val(x), next(NULL) {}
+        };
 ```
+
 <!-- GFM-TOC -->
 [19. 删除链表的倒数第N个节点(easy)](#19-删除链表的倒数第N个节点)   
 [21. 合并两个有序链表(easy)](#21-合并两个有序链表)  
@@ -22,6 +23,7 @@ struct ListNode {
 [445-两数相加 II(medium)](#445-两数相加 II)  
 <!-- GFM-TOC -->
 
+<div id="19-删除链表的倒数第N个节点"></div>  
 **19-删除链表的倒数第N个节点**(easy)  
 　　题目：  
 　　　给定一个链表，删除链表的倒数第 n 个节点，并且返回链表的头结点。  
@@ -86,6 +88,7 @@ public:
 };
 ```
 
+<div id="21-合并两个有序链表"></div>  
 **21-合并两个有序链表**(easy)  
 　　题目：  
 　　　将两个有序链表合并为一个新的有序链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。   
@@ -158,6 +161,7 @@ public:
 };
 ```
 
+<div id="24-两两交换链表中的节点"></div>  
 **24-两两交换链表中的节点(medium)**  
 　　题目：  
 　　　给定一个链表，两两交换其中相邻的节点，并返回交换后的链表。  
@@ -221,7 +225,7 @@ public:
     }
 };
 ```
-
+<div id="83-删除有序链表重复节点"></div>  
 **83-删除有序链表重复节点**(easy)  
 　　示例：  
 　　　Given 1->1->2, return 1->2.  
@@ -234,14 +238,15 @@ way1: 递归
 //内存消耗 :13.4 MB, 在所有 C++ 提交中击败了5.04%的用户
 class Solution{
 public:
-	ListNode* deleteDuplicates(ListNode* head) {
-    if (!head || !head->next) return head;
-    head->next = deleteDuplicates(head->next);
-    return head->val == head->next->val ? head->next : head;
-	}
+    ListNode* deleteDuplicates(ListNode* head) {
+        if (!head || !head->next) return head;
+        head->next = deleteDuplicates(head->next);
+        return head->val == head->next->val ? head->next : head;
+    	}
 };
 ```
 
+<div id="160-相交链表"></div>  
 **160-相交链表**(easy)  
 　　题目：  
 　　　链表是空节点，或者有一个值和一个指向下一个链表的指针，因此很多链表问题可以用递归来处理。  
@@ -314,8 +319,10 @@ public:
 
         return cur_a;
     }
-};```
+};
+```
 
+<div id="206-链表翻转"></div>  
 **206-链表翻转**(easy)  
 　　题目：  
 　　　反转一个单链表。  
@@ -386,9 +393,10 @@ public:
 		}	
 		return new_list;
 	}
-};```
+};
+```
 
-
+<div id="234-回文链表"></div>  
 **234-回文链表**(easy)  
 　　题目：  
 　　　请判断一个链表是否为回文链表。  
@@ -502,8 +510,10 @@ public:
         }
         return true;
     }
-};```
+};
+```
 
+<div id="445-两数相加 II"></div>  
 **445-两数相加 II**(medium)  
 　　题目：  
 　　　给定两个非空链表来代表两个非负整数。数字最高位位于链表开始位置。它们的每个节点只存储单个数字。将这两数相加会返回一个新的链表。  
@@ -572,7 +582,8 @@ public:
         }
         return pHead;      
     }
-};```
+};
+```
 
 
 
