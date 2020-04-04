@@ -8,6 +8,7 @@
 
 保证每次操作都是局部最优的，并且最后得到的结果是全局最优的。
 
+<div id="455-分发饼干"></div>
 **455-分发饼干**(Easy) [力扣](https://leetcode-cn.com/problems/assign-cookies/description/)  
 
 　　题目描述：每个孩子都有一个满足度 grid，每个饼干都有一个大小size，只有饼干的大小大于等于一个孩子的满足度，该孩子才会获得满足。求解最多可以获得满足的孩子数量。
@@ -19,29 +20,29 @@
 　　证明：假设在某次选择中，贪心策略选择给当前满足度最小的孩子分配第 m 个饼干，第 m 个饼干为可以满足该孩子的最小饼干。假设存在一种最优策略，可以给该孩子分配第 n 个饼干，并且 m < n。我们可以发现，经过这一轮分配，贪心策略分配后剩下的饼干一定有一个比最优策略来得大。因此在后续的分配中，贪心策略一定能满足更多的孩子。也就是说不存在比贪心策略更优的策略，即贪心策略就是最优策略。  
 
 ```cpp
-		class Solution {
+		class Solution {
 		public:
-		    int findContentChildren(vector<int>& g, vector<int>& s) {
-		        sort(g.begin(),g.end());
-		        sort(s.begin(),s.end());
-		        int res=0;
-		        vector<int>::iterator it = s.begin();
-		        if(it==s.end()) return res;;
-		        for(int child :g ){
-		            while(*it < child) { //直到找到比child胃口大的饼干       
-		                it++; 
-		                if(it==s.end())return res;;
-		            }
-		            res++;  it++;
-		            if(it==s.end())break;
-		        }
-		        return res;
-		    }
+		    int findContentChildren(vector<int>& g, vector<int>& s) {
+		        sort(g.begin(),g.end());
+		        sort(s.begin(),s.end());
+		        int res=0;
+		        vector<int>::iterator it = s.begin();
+		        if(it==s.end()) return res;;
+		        for(int child :g ){
+		            while(*it < child) { //直到找到比child胃口大的饼干       
+		                it++; 
+		                if(it==s.end())return res;;
+		            }
+		            res++;  it++;
+		            if(it==s.end())break;
+		        }
+		        return res;
+		    }
 };
 ```
+<div id="55-跳跃游戏"></div>  
+**55-跳跃游戏**(medium)[力扣](https://leetcode-cn.com/problems/jump-game/)  
 
-**55-跳跃游戏**(medium)  
-　　[力扣](https://leetcode-cn.com/problems/jump-game/)  
 　　给定一个非负整数数组，你最初位于数组的第一个位置。  
 　　数组中的每个元素代表你在该位置可以跳跃的最大长度。  
 　　判断你是否能够到达最后一个位置。  
@@ -65,10 +66,12 @@ public:
         }
         return !last;
     }
-};```
+};
+```
 
-
+<div id="134-加油站"></div>  
 **134-加油站** (medium)   
+
 　　在一条环路上有 N 个加油站，其中第 i 个加油站有汽油 gas[i] 升。  
 　　你有一辆油箱容量无限的的汽车，从第 i 个加油站开往第 i+1 个加油站需要消耗汽油 cost[i] 升。你从其中的一个加油站出发，开始时油箱为空。  
 　　如果你可以绕环路行驶一周，则返回出发时加油站的编号，否则返回 -1。  
@@ -103,4 +106,5 @@ public:
         };
         return gas_sum >=0?min_i :-1;
     }
-};```
+};
+```
