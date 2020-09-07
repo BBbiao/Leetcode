@@ -12,88 +12,19 @@
 
 <!-- GFM-TOC -->
 [104.二叉树的最大深度](#104-二叉树的最大深度)  
-[543.二叉树的直径(medium)](#543-二叉树的直径)  
 [110.平衡二叉树](#110-平衡二叉树)  
+
 [144.二叉树的前序遍历(medium)](#144-二叉树的前序遍历)  
 [94.二叉树的中序遍历(medium)](#94-二叉树的中序遍历)  
 [145.二叉树的后序遍历(hard)](#145-二叉树的后序遍历)  
 
-
-[208.实现 Trie(前缀树)(medium)](#208-实现Trie(前缀树)(medium))
-
+[129. 求根到叶子节点数字之和(medium)](#129#求根到叶子节点数字之和)  
+[208.实现 Trie(前缀树)(medium)](#208-实现Trie(前缀树)  
+[543.二叉树的直径(medium)](#543-二叉树的直径)  
 
 <!-- GFM-TOC -->
 
-<div id="94-二叉树的中序遍历"></div>  
-**94-二叉树的中序遍历**(medium)    
 
-　　题目:  
-　　　给定一个二叉树，返回它的中序遍历。  
-　　示例:  
-　　　输入: [1,null,2,3]  
-　　　输出: [1,3,2]  
-　　注意：  
-　　　根节点其实早就在找左节点的时候就入栈了，所以可以根节点看做左节点。只不过是出栈顺序不一样。  
-
-[way1](#94-way1): 递归，用一个辅助函数帮助。  
-[way2](#94-way2)：迭代，尾递归都可以转化成迭代。  
-
-<div id="94-way1"></div>
-
-```cpp
-/******************************* way1 *****************************************/
-//执行用时 :4 ms, 在所有 C++ 提交中击败了72.75% 的用户
-//内存消耗 :10.5 MB, 在所有 C++ 提交中击败了11.60%的用户
-
-class Solution {
-    vector<int> res;
-public:
-    vector<int> inorderTraversal(TreeNode* root) {
-      helper(root);
-      return res;
-    }
-    void helper(TreeNode* root) {
-        if(root!=NULL){
-            if(root->left !=NULL){
-                helper(root->left);
-            }
-            res.push_back(root->val);
-            if(root->right !=NULL){
-                helper(root->right);
-            }
-        }
-    }
-};
-```
-<div id="94-way2"></div>
-
-```cpp
-/******************************* way2 *****************************************/
-//执行用时 :4 ms, 在所有 C++ 提交中击败了72.75% 的用户
-//内存消耗 :9.9 MB, 在所有 C++ 提交中击败了12.93%的用户
-class Solution {
-    vector<int> res;
-public:
-    vector<int> inorderTraversal(TreeNode* root) {
-		vector<int> res;
-		if(!root) return res;
-		stack<TreeNode*> s;
-		
-		TreeNode *curr = root;
-		while(curr!=NULL || !s.empty()){
-			while(curr!=NULL){
-				s.push(curr);
-				curr = curr->left;
-			}
-			curr = s.top();
-            s.pop();
-            res.push_back(curr->val);
-            curr = curr->right;
-		}
-		return res;
-    }
-};
-```
 
 <div id="104-二叉树的最大深度"></div>  
 **104-二叉树的最大深度**(easy)  
@@ -312,6 +243,77 @@ public:
     }
 };
 ```
+<div id="94-二叉树的中序遍历"></div>  
+**94-二叉树的中序遍历**(medium)    
+
+　　题目:  
+　　　给定一个二叉树，返回它的中序遍历。  
+　　示例:  
+　　　输入: [1,null,2,3]  
+　　　输出: [1,3,2]  
+　　注意：  
+　　　根节点其实早就在找左节点的时候就入栈了，所以可以根节点看做左节点。只不过是出栈顺序不一样。  
+
+[way1](#94-way1): 递归，用一个辅助函数帮助。  
+[way2](#94-way2)：迭代，尾递归都可以转化成迭代。  
+
+<div id="94-way1"></div>
+
+```cpp
+/******************************* way1 *****************************************/
+//执行用时 :4 ms, 在所有 C++ 提交中击败了72.75% 的用户
+//内存消耗 :10.5 MB, 在所有 C++ 提交中击败了11.60%的用户
+
+class Solution {
+    vector<int> res;
+public:
+    vector<int> inorderTraversal(TreeNode* root) {
+      helper(root);
+      return res;
+    }
+    void helper(TreeNode* root) {
+        if(root!=NULL){
+            if(root->left !=NULL){
+                helper(root->left);
+            }
+            res.push_back(root->val);
+            if(root->right !=NULL){
+                helper(root->right);
+            }
+        }
+    }
+};
+```
+
+<div id="94-way2"></div>
+
+```cpp
+/******************************* way2 *****************************************/
+//执行用时 :4 ms, 在所有 C++ 提交中击败了72.75% 的用户
+//内存消耗 :9.9 MB, 在所有 C++ 提交中击败了12.93%的用户
+class Solution {
+    vector<int> res;
+public:
+    vector<int> inorderTraversal(TreeNode* root) {
+		vector<int> res;
+		if(!root) return res;
+		stack<TreeNode*> s;
+		
+		TreeNode *curr = root;
+		while(curr!=NULL || !s.empty()){
+			while(curr!=NULL){
+				s.push(curr);
+				curr = curr->left;
+			}
+			curr = s.top();
+            s.pop();
+            res.push_back(curr->val);
+            curr = curr->right;
+		}
+		return res;
+    }
+};
+```
 
 <div id="145-二叉树的后序遍历"></div>  
 **145-二叉树的后序遍历**(hard)  
@@ -348,6 +350,7 @@ public:
     }
 };
 ```
+
 <div id="145-way2"></div>
 
 ```cpp
@@ -379,6 +382,119 @@ public:
             curr = curr->right;
 		}
 		return res;
+    }
+};
+```
+
+<div id="129-求根到叶子节点数字之和"></div>  
+**129. 求根到叶子节点数字之和 **(medium)  [力扣](https://leetcode-cn.com/problems/sum-root-to-leaf-numbers/)  
+题目：  
+　　给定一个二叉树，它的每个结点都存放一个 0-9 的数字，每条从根到叶子节点的路径都代表一个数字。  
+　　例如，从根到叶子节点路径 1->2->3 代表数字 123。  
+　　计算从根到叶子节点生成的所有数字之和。  
+
+示例:  
+　　输入: [1,2,3]  
+　　　　　　1  
+　　　　　　/ \  
+　　　　　2   3  
+　　输出: 25  
+　　解释:  
+　　从根到叶子节点路径 1->2 代表数字 12.  
+　　从根到叶子节点路径 1->3 代表数字 13.  
+　　因此，数字总和 = 12 + 13 = 25.  
+思路：dfs + 回溯
+```cpp
+class Solution {
+public:
+//dfs + 回溯
+    int res=0, tmp=0;
+    
+    void dfs(TreeNode* root){
+        tmp=tmp*10+ root->val;
+        if(root->left ==nullptr && root->right==nullptr){
+            res+=tmp;
+            tmp/=10;
+            return;
+        }
+        if(root->left)dfs(root->left);
+        if(root->right)dfs(root->right);
+        tmp/=10; 
+    }
+    int sumNumbers(TreeNode* root) {
+        if(root ==nullptr )
+            return NULL;
+        dfs(root);
+        return res;
+    }
+};
+```
+
+<div id="208-实现Trie(前缀树)"></div>  
+**208-实现Trie(前缀树)**(medium)  
+
+Trie(前缀树)介绍：  
+　　Trie (发音为 "try") 或前缀树是一种树数据结构，用于检索字符串数据集中的键。这一高效的数据结构有多种应用：1. 自动补全　2. 拼写检查　3. IP 路由 (最长前缀匹配)　4. 单词游戏  
+　　尽管哈希表可以在 O(1) 时间内寻找键值，却无法高效的完成以下操作：  
+　　　找到具有同一前缀的全部键值。  
+　　　按词典序枚举字符串的数据集。  
+　　Trie 树优于哈希表的另一个理由是，随着哈希表大小增加，会出现大量的冲突，时间复杂度可能增加到 O(n)，其中 n是插入的键的数量。与哈希表相比，Trie 树在存储多个具有相同前缀的键时可以使用较少的空间。此时 Trie 树只需要 O(m)的时间复杂度，其中 m 为键长。而在平衡树中查找键值需要 O(mlogn) 时间复杂度。  
+
+　　实现一个 Trie (前缀树)，包含 insert, search, 和 startsWith 这三个操作。  
+　　示例:  
+　　　Trie trie = new Trie();  
+
+　　　trie.insert("apple");  
+　　　trie.search("apple");   // 返回 true  
+　　　trie.search("app");     // 返回 false  
+　　　trie.startsWith("app"); // 返回 true  
+　　　trie.insert("app");     
+　　　trie.search("app");     // 返回 true  
+
+　　说明:  
+　　　你可以假设所有的输入都是由小写字母 a-z 构成的。  
+
+```cpp
+class Trie {
+private:
+    bool is_end;
+    Trie* next[26];  //因为默认只有26个小写字母，提前建立子节点的指针，但是值都是NULL
+public:
+    /** Initialize your data structure here. */
+    Trie() {
+        is_end = false;
+        memset(next,0,sizeof(next)); //初始化指针都为0
+    }
+
+    /** Inserts a word into the trie. */
+    void insert(string word) {
+        Trie* node =this;
+        for(char c: word){
+            if(node->next[c-'a']==NULL)//说明没有这个前缀
+                node->next[c-'a']=new Trie();
+            node=node->next[c-'a'];     //node指向下一个节点
+        }
+        node->is_end=true;
+    }
+    /** 找这个整个Word在不在. */
+    bool search(string word) {
+        Trie* node =this;
+        for(char c:word){
+            if(node->next[c-'a']==NULL)//说明没有这个前缀
+                return false;
+            node=node->next[c-'a'];
+        }
+        return node->is_end;
+    }
+    /** Returns if there is any word in the trie that starts with the given prefix. */
+    bool startsWith(string prefix) {
+        Trie* node =this;
+        for(char c:prefix){
+            if(node->next[c-'a']==NULL)//说明没有这个前缀
+                return false;
+            node=node->next[c-'a'];
+        }
+        return true;
     }
 };
 ```
@@ -472,75 +588,6 @@ public:
         res = 0;
         depth(root);
         return res;
-    }
-};
-```
-
-<div id="208-实现Trie(前缀树)"></div>  
-**208-实现Trie(前缀树)**(medium)  
-
-Trie(前缀树)介绍：  
-　　Trie (发音为 "try") 或前缀树是一种树数据结构，用于检索字符串数据集中的键。这一高效的数据结构有多种应用：1. 自动补全　2. 拼写检查　3. IP 路由 (最长前缀匹配)　4. 单词游戏  
-　　尽管哈希表可以在 O(1) 时间内寻找键值，却无法高效的完成以下操作：  
-　　　找到具有同一前缀的全部键值。  
-　　　按词典序枚举字符串的数据集。  
-　　Trie 树优于哈希表的另一个理由是，随着哈希表大小增加，会出现大量的冲突，时间复杂度可能增加到 O(n)，其中 n是插入的键的数量。与哈希表相比，Trie 树在存储多个具有相同前缀的键时可以使用较少的空间。此时 Trie 树只需要 O(m)的时间复杂度，其中 m 为键长。而在平衡树中查找键值需要 O(mlog⁡n) 时间复杂度。  
-
-　　实现一个 Trie (前缀树)，包含 insert, search, 和 startsWith 这三个操作。  
-　　示例:  
-　　　Trie trie = new Trie();  
-
-　　　trie.insert("apple");  
-　　　trie.search("apple");   // 返回 true  
-　　　trie.search("app");     // 返回 false  
-　　　trie.startsWith("app"); // 返回 true  
-　　　trie.insert("app");     
-　　　trie.search("app");     // 返回 true  
-
-　　说明:  
-　　　你可以假设所有的输入都是由小写字母 a-z 构成的。  
-
-```cpp
-class Trie {
-private:
-    bool is_end;
-    Trie* next[26];  //因为默认只有26个小写字母，提前建立子节点的指针，但是值都是NULL
-public:
-    /** Initialize your data structure here. */
-    Trie() {
-        is_end = false;
-        memset(next,0,sizeof(next)); //初始化指针都为0
-    }
-
-    /** Inserts a word into the trie. */
-    void insert(string word) {
-        Trie* node =this;
-        for(char c: word){
-            if(node->next[c-'a']==NULL)//说明没有这个前缀
-                node->next[c-'a']=new Trie();
-            node=node->next[c-'a'];     //node指向下一个节点
-        }
-        node->is_end=true;
-    }
-    /** 找这个整个Word在不在. */
-    bool search(string word) {
-        Trie* node =this;
-        for(char c:word){
-            if(node->next[c-'a']==NULL)//说明没有这个前缀
-                return false;
-            node=node->next[c-'a'];
-        }
-        return node->is_end;
-    }
-    /** Returns if there is any word in the trie that starts with the given prefix. */
-    bool startsWith(string prefix) {
-        Trie* node =this;
-        for(char c:prefix){
-            if(node->next[c-'a']==NULL)//说明没有这个前缀
-                return false;
-            node=node->next[c-'a'];
-        }
-        return true;
     }
 };
 ```

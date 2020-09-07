@@ -1,14 +1,53 @@
-# 数组与矩阵
+# 数组与矩阵  
 <!-- GFM-TOC -->
-### 数组
+### 数组  
+[491.递增子序列(medium)](#491-递增子序列)  
 
-### 矩阵
-[289.生命游戏(medium)](#289-生命游戏)
+### 矩阵  
+[289.生命游戏(medium)](#289-生命游戏)  
 
 <!-- GFM-TOC -->
+<div id="491-递增子序列"></div>  
+**491.递增子序列**(medium) [力扣](https://leetcode-cn.com/problems/increasing-subsequences/)    
+　题目：给定一个整型数组, 你的任务是找到所有该数组的递增子序列，递增子序列的长度至少是2。  
+　示例:  
+　　输入: [4, 6, 7, 7]  
+　　输出: [[4, 6], [4, 7], [4, 6, 7], [4, 6, 7, 7], [6, 7], [6, 7, 7], [7,7], [4,7,7]]  
+　思路：  
+　　使用dfs，一个数遍历到它时有两种选择，要或是不要，所以可以先选择它走到底后再回溯，不选择它。  
+　　因为有判断条件nums[index]>=curr.back()，所以无需担心是不是递增。  
+　　其次，使用set进行去重。（可以改进）  
+```cpp
+class Solution {
+public:
+    vector<vector<int>> findSubsequences(vector<int>& nums) {
+        set<vector<int>> st;
+        vector<int> curr;
+        dfs(st,curr,nums,0);
+        vector<vector<int>> res(st.begin(),st.end());
+        return res;
+    }
+    void dfs(set<vector<int>> &st,vector<int> &curr,vector<int>& nums,int index){
+        if(index>=nums.size()){
+            if(curr.size()>1) st.insert(curr);
+            return;
+        }
+        // 选择这个数
+        if(curr.size()==0 || nums[index]>=curr.back()){
+            curr.push_back(nums[index]);
+            dfs(st,curr,nums,index+1);
+            curr.pop_back();       // 这一步很关键
+        }
+        // 不选这个数
+        dfs(st,curr,nums,index+1);
+    }
+};
+```
 
-<div id="289-生命游戏"></div>
-**289-生命游戏**(medium)  
+
+
+<div id="289-生命游戏"></div>  
+**289.生命游戏**(medium)  
 
 　　给定一个包含 m × n 个格子的面板，每一个格子都可以看成是一个细胞。每个细胞具有一个初始状态 live（1）即为活细胞， 或 dead（0）即为死细胞。每个细胞与其八个相邻位置（水平，垂直，对角线）的细胞都遵循以下四条生存定律：  
 

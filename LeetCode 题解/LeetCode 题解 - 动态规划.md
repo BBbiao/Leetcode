@@ -11,10 +11,13 @@
 　　[121.买卖股票的最佳时机(easy)](#121-买卖股票的最佳时机)  
 　　[198.打家劫舍(easy)](#198-打家劫舍)  
 　　[213.打家劫舍 II(medium)](#213-打家劫舍II)  
-　　[264.丑数 II(medium)](#264-丑数II)   
+　　[264.丑数 II(medium)](#264-丑数II)  
+　　[343.整数拆分**(medium)](343-整数拆分)
+　　[486. 预测赢家(medium)](#486-预测赢家)   
 　　 
 + 区域动规  
 　　[62.不同路径(easy)](#62-不同路径)  
+　　[面试题 17.08.马戏团人塔(medium)](#面试题 17.08.马戏团人塔)
 + 树形动规
 + 背包问题
 <!-- GFM-TOC -->
@@ -416,7 +419,7 @@ public:
 　　1 是丑数。  
 　　n 不超过1690。   
 　思路：  
-　　动态规划：这个数一定是x*2，x*3，x*5得到的，而这个x恰好是我们要维护的一个数组，所以我们直接使用这个dp数组就可以，但是在要注意按从小到大的次序填，所以就要对2,3,5各自维护一个自己乘数的标记，也就是下面的tmp_2，tmp_3，tmp_5。  
+　　动态规划：这个数一定是x\*2，x\*3，x\*5得到的，而这个x恰好是我们要维护的一个数组，所以我们直接使用这个dp数组就可以，但是在要注意按从小到大的次序填，所以就要对2,3,5各自维护一个自己乘数的标记，也就是下面的tmp_2，tmp_3，tmp_5。  
 
 ```cpp
 class Solution {
@@ -463,8 +466,53 @@ public:
 };
 ``` 
 
+
+<div id="486-预测赢家"></div>
+**486. 预测赢家**(medium) [力扣](https://leetcode-cn.com/problems/predict-the-winner/)  
+题目：
+
+　　给定一个表示分数的非负整数数组。 玩家 1 从数组任意一端拿取一个分数，随后玩家 2 继续从剩余数组任意一端拿取分数，然后玩家 1 拿，…… 。每次一个玩家只能拿取一个分数，分数被拿取之后不再可取。直到没有剩余分数可取时游戏结束。最终获得分数总和最多的玩家获胜。
+
+　　给定一个表示分数的数组，预测玩家1是否会成为赢家。你可以假设每个玩家的玩法都会使他的分数最大化。
+
+示例 ：  
+
+　　输入：[1, 5, 2]  
+　　输出：False  
+　　解释：一开始，玩家1可以从1和2中进行选择。  
+　　如果他选择 2（或者 1 ），那么玩家 2 可以从 1（或者 2 ）和 5 中进行选择。如果玩家 2 选择了 5 ，那么玩家 1 则只剩下 1（或者 2 ）可选。  
+　　所以，玩家 1 的最终分数为 1 + 2 = 3，而玩家 2 为 5 。  
+　　因此，玩家 1 永远不会成为赢家，返回 False 。  
+思路：首先找到最优子结构，在数组[i,i+1,...,j]中，如果玩家1可以选择i或j，如果选择i是最佳的，那么在剩下的[i+1,...,j]中，玩家1以后的选择也还是最优的。
+　　设置dp数组，二维长宽都是数组长度len，dp\[i\]\[j\]表示在数组\[i,i+1,..,j\]的区间内玩家1所得分数比玩家2高多少。
+　　dp\[i\]\[j\],如果玩家1选择nums\[i\],那么玩家2就会得到dp\[i+1\]\[j\],所以玩家1比玩家2多nums\[i\]-dp\[i+1\]\[j\]分，还一种情况，玩家1选择nums\[j\]，那么玩家2会得到dp\[i\]\[j-1\]，玩家1比玩家2多nums\[i\]-dp\[i\]\[j-1\]分，所以 
+
+　　dp\[i\]\[j\]=max(nums\[i\]-dp\[i+1\]\[j\] ,nums\[i\]-dp\[i\]\[j-1\])
+
+　　数组的填充方向是从下往上，从左到右，最后填充的是dp\[0\]\[len-1\]。
+
+```
+class Solution {
+public:
+    bool PredictTheWinner(vector<int>& nums) {
+        int len=nums.size();
+        vector<vector<int>> dp(len,vector<int>(len,0));
+        for(int i=0;i<len;i++){              //初始化
+            dp[i][i]=nums[i];
+        }
+        for(int i=len-2; i>=0 ; i--) {       //我们只用对角线上半部分
+            for(int j=i+1; j<len;j++){
+                dp[i][j]=max(nums[i]-dp[i+1][j],nums[j]-dp[i][j-1]);
+            }
+        }
+        return dp[0][len-1]>=0? true:false;
+    }
+};
+```
+
 ## 区域动规
-**62. 不同路径**(easy)<div  id="62-不同路径"> </div>
+<div  id="62-不同路径"> </div>
+**62. 不同路径**(easy)
 
 　　一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为“Start” ）。  
 　　机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角（在下图中标记为“Finish”）。  
@@ -493,3 +541,42 @@ public:
     }
 };
 ```
+
+
+<div id="面试题 17.08.马戏团人塔"> </div> 
+	
+**面试题 17.08.马戏团人塔**(medium)[力扣](https://leetcode-cn.com/problems/circus-tower-lcci/)  
+
+　　有个马戏团正在设计叠罗汉的表演节目，一个人要站在另一人的肩膀上。出于实际和美观的考虑，在上面的人要比下面的人矮一点且轻一点。已知马戏团每个人的身高和体重，请编写代码计算叠罗汉最多能叠几个人。height.length == weight.length <= 10000  
+
+示例：  
+　　输入：height = [65,70,56,75,60,68] weight = [100,150,90,190,95,110]   
+　　输出：6  
+　　解释：从上往下数，叠罗汉最多能叠 6 层：(56,90), (60,95), (65,100), (68,110), (70,150), (75,190)  
+```cpp
+//执行用时 :336 ms, 在所有 C++ 提交中击败了35.03% 的用户
+//内存消耗 :49 MB, 在所有 C++ 提交中击败了100.00%的用户
+class Solution {
+public:
+    //自己写一个排序方法
+    static bool isless1(const pair<int,int> &a ,const pair<int,int> &b){
+        return a.first == b.first ? a.second > b.second : a.first < b.first;
+    }
+    int bestSeqAtIndex(vector<int>& height, vector<int>& weight) {
+        vector<pair<int,int>> p;
+        int size = height.size();
+        for(int i=0;i<size;i++)
+            p.push_back(make_pair(height[i],weight[i]));
+        sort(p.begin(),p.end(),isless1);
+        vector<int> dp; //长度为N的地方 最小的数字
+        for(const auto &[h, w]: p) {
+            auto pos = lower_bound(dp.begin(), dp.end(), w);  //二分查找第一个大于等于的地方
+            if(pos == dp.end()) dp.push_back(w);
+            else *pos = w;          //如果找到了就把替换掉
+        }
+        return dp.size();
+    }
+};
+```
+    
+

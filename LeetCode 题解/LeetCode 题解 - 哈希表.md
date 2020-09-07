@@ -1,10 +1,12 @@
 # 哈希表  
 <!-- GFM-TOC -->
 [1.两数之和(easy)](#1-两数之和)  
+[面试题03.数组中重复的数字(easy)](#面试题03-数组中重复的数字)  
 [1160.拼写单词(easy)](#1160-拼写单词)   
 <!-- GFM-TOC -->
 
 <div id="1-两数之和"></div>
+
 **1-两数之和**(easy)  
 
 　　给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。  
@@ -56,8 +58,37 @@ public:
     }
 };
 ```
+<div id="面试题03-数组中重复的数字"></div>
+
+**面试题03-数组中重复的数字**(easy)[力扣](#https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/)  
+
+　　找出数组中重复的数字。  
+　　在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。2 <= n <= 100000  
+
+　示例 1：  
+　　输入：[2, 3, 1, 0, 2, 5, 3]  
+　　输出：2 或 3   
+　思路：直接unordered_map，没出现过就存入，出现过直接输出
+
+```cpp
+class Solution {
+public:
+    int findRepeatNumber(vector<int>& nums) {
+        unordered_map<int,int> m;
+        int size=nums.size();
+        for(int i=0;i<size;i++){
+            if(m.find(nums[i]) ==m.end())
+                m[nums[i]]++;
+            else return nums[i];
+        }
+        return 0;
+    }
+};
+```
+
 
 <div id="1160-拼写单词"></div>
+
 **1160-拼写单词**(easy)  
 
 　　给你一份『词汇表』（字符串数组） words 和一张『字母表』（字符串） chars。  
